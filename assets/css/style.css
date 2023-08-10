@@ -1,0 +1,18 @@
+body {
+	max-width: 700px;
+	margin: 0 auto;
+	border: 1px dotted grey;
+	padding: 10px;
+}
+
+.pagination {
+	margin-top: 20px;
+	text-align: center;
+}
+
+footer {
+	margin-top: 25px;
+	border-top: 1px dotted grey;
+	padding: 10px 0;
+	text-align: center;
+}

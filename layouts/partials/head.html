@@ -1,6 +1,37 @@
+{{- /* Init Variable */ -}}
+{{- $hugo_IsProduction := false }}
+{{- if eq .Site.Params.env "production" }}
+	{{- $hugo_IsProduction = true }}
+{{- end }}
+
+
+{{- /* Robots */ -}}
+{{- $robots := "noindex, nofollow" }}
+{{- if .Site.Params.robotsAllow }}
+	{{- $robots = "index, follow" }}
+{{- end }}
+
+
+{{- /* Styles */ -}}
+{{- $css := slice }}
+{{- $css = append (resources.Get "css/style.css") $css }}
+{{- $stylesheet := $css | resources.Concat "css/stylesheet.css" }}
+{{- $stylesheetVersion := md5 ($stylesheet | fingerprint).Data.Integrity }}
+{{- $stylesheetUrl := print $stylesheet.RelPermalink "?v=" $stylesheetVersion }}
+{{- if $hugo_IsProduction }}
+	{{- $stylesheet := $stylesheet | resources.Minify }}
+	{{- $stylesheetUrl = (.Site.BaseURL | replaceRE "/$" "") }}
+	{{- $stylesheetUrl = print $stylesheetUrl ($stylesheet.RelPermalink) }}
+	{{- $stylesheetUrl = print .Site.BaseURL "css/stylesheet.min.css?v=" $stylesheetVersion }}
+{{- end }}
+
+{{- "" -}}
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{ .Title }}</title>
 	{{ hugo.Generator }}
+	<meta name="robots" content="{{ $robots }}">
+	<link rel="canonical" href="{{ .Permalink }}">
+	<link rel="preload stylesheet" type="text/css" href="{{ $stylesheetUrl }}">
 </head>

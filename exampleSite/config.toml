@@ -1,11 +1,13 @@
 baseurl = "https://example.com/"
-languageCode = "id"
+languageCode = "en"
 title = "Hugo Theme Starter"
 theme = "hugo-theme-starter"
 
 paginate = 5
 
 [params]
+	#env = "production"
+	robotsAllow = true
 	mainSections = ["post", "posts", "blog"]
 
 # menu config

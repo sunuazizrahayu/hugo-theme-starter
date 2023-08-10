@@ -1,8 +1,6 @@
 
 <article>
-	<a href="{{ .Permalink }}">
-		<h2>{{ .Title }}</h2>
-	</a>
+	<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
 	<div>
 		<time>{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02 15:04:05") }}</time>
 		·
