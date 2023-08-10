@@ -1,0 +1,43 @@
+{{ define "main" }}
+	<main>
+		<article>
+			<a href="{{ .Permalink }}">
+				<h2>{{ .Title }}</h2>
+			</a>
+			<div>
+				<time>{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02 15:04:05") }}</time>
+				·
+				<span>{{ .ReadingTime }} min{{ if (gt .ReadingTime 1) }}s{{ end }}</span>
+				·
+				<span>{{ .WordCount }} word{{ if (gt .WordCount 1) }}s{{ end }}</span>
+				{{- if or .Params.author .Site.Params.author }}
+				·
+				<span>{{- partial "post_meta_author.html" . }}</span>
+				{{- end }}
+			</div>
+			<div>
+				{{ .Content }}
+			</div>
+			{{- if .Params.tags }}
+			<div>
+				<b>Tags: </b>
+				<ul>
+					{{- range ($.GetTerms "tags") }}
+					<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+					{{- end }}
+				</ul>
+			</div>
+			{{- end }}
+			{{- if .Params.categories }}
+			<div>
+				<b>Categories: </b>
+				<ul>
+					{{- range ($.GetTerms "categories") }}
+					<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+					{{- end }}
+				</ul>
+			</div>
+			{{- end }}
+		</article>
+	</main>
+{{ end }}

@@ -1,5 +1,10 @@
 {{ define "main" }}
 	<main>
-		Your Content Here..
+		{{- $page := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+		{{- range $page.Pages }}
+		{{- partial "post_summary.html" . }}
+		{{- end }}
 	</main>
+
+	{{ partial "pagination.html" . }}
 {{ end }}

@@ -1,0 +1,18 @@
+
+<article>
+	<a href="{{ .Permalink }}">
+		<h2>{{ .Title }}</h2>
+	</a>
+	<div>
+		<time>{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02 15:04:05") }}</time>
+		·
+		<span>{{ .ReadingTime }} min{{ if (gt .ReadingTime 1) }}s{{ end }}</span>
+		·
+		<span>{{ .WordCount }} word{{ if (gt .WordCount 1) }}s{{ end }}</span>
+		{{- if or .Params.author .Site.Params.author }}
+		·
+		<span>{{- partial "post_meta_author.html" . }}</span>
+		{{- end }}
+	</div>
+	<div>{{ .Summary }}</div>
+</article>

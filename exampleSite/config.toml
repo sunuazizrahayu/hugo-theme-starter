@@ -2,3 +2,31 @@ baseurl = "https://example.com/"
 languageCode = "id"
 title = "Hugo Theme Starter"
 theme = "hugo-theme-starter"
+
+paginate = 5
+
+[params]
+	mainSections = ["post", "posts", "blog"]
+
+# menu config
+[menu]
+	[[menu.main]]
+		weight = 1
+		name = "Home"
+		url = "/"
+	[[menu.main]]
+		weight = 2
+		name = "Categories"
+		url = "/categories/"
+	[[menu.main]]
+		weight = 3
+		name = "Tags"
+		url = "/tags/"
+
+
+# Markup related configuration in Hugo
+[markup]
+	[markup.goldmark]
+	[markup.goldmark.renderer]
+		# whether to use HTML tags directly in the document
+		unsafe = true

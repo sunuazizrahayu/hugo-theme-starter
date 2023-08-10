@@ -2,8 +2,7 @@
 	<main>
 		<h3>{{ .Title }}</h3>
 		<hr>
-		{{- $page := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
-		{{- range $page.Pages }}
+		{{- range .Pages }}
 		{{- partial "post_summary.html" . }}
 		{{- end }}
 	</main>
