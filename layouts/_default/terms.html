@@ -1,4 +1,9 @@
 {{ define "main" }}
+{{- /* Init Variable */ -}}
+{{- $hugo_IsProduction := false }}
+{{- if eq .Site.Params.env "production" }}
+	{{- $hugo_IsProduction = true }}
+{{- end }}
 	<main>
 		<h3>{{ .Title }}</h3>
 		<ul>
@@ -7,7 +12,11 @@
 			{{- $name := .Name }}
 			{{- $count := .Count }}
 			{{- with site.GetPage (printf "/%s/%s" $type $name) }}
-			<li><a href="{{ .Permalink }}">{{ .Name }}</a><sup>{{ $count }}</sup></li>
+			{{- $url := .RelPermalink }}
+			{{- if $hugo_IsProduction }}
+				{{- $url = .Permalink }}
+			{{- end }}
+			<li><a href="{{ $url }}">{{ .Name }}</a><sup>{{ $count }}</sup></li>
 			{{- end }}
 		{{- end }}
 		</ul>

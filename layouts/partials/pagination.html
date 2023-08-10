@@ -1,11 +1,25 @@
+{{- /* Init Variable */ -}}
+{{- $hugo_IsProduction := false }}
+{{- if eq .Site.Params.env "production" }}
+	{{- $hugo_IsProduction = true }}
+{{- end }}
 {{- if (gt .Paginator.TotalPages 1) }}
-<div class="pagination">
-{{- if .Paginator.HasPrev }}
-	<a href="{{ .Paginator.Prev.URL | absURL }}" class="pagination-prev">«</a>
-{{- end }}
-	<span class="pagination-number">{{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
-{{- if .Paginator.HasNext }}
-	<a href="{{ .Paginator.Next.URL | absURL }}" class="pagination-next">»</a>
-{{- end }}
-</div>
+	{{- "" -}}
+	<div class="pagination">
+	{{- if .Paginator.HasPrev }}
+		{{- $url := .Paginator.Prev.URL }}
+		{{- if $hugo_IsProduction }}
+			{{- $url = .Paginator.Prev.URL | absURL }}
+		{{- end }}
+		<a href="{{ $url }}" class="pagination-prev">«</a>
+	{{- end }}
+		<span class="pagination-number">{{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
+	{{- if .Paginator.HasNext }}
+		{{- $url := .Paginator.Next.URL }}
+		{{- if $hugo_IsProduction }}
+			{{- $url = .Paginator.Next.URL | absURL }}
+		{{- end }}
+		<a href="{{ $url }}" class="pagination-next">»</a>
+	{{- end }}
+	</div>
 {{- end }}

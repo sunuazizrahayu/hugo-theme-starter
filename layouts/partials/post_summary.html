@@ -1,6 +1,17 @@
+{{- /* Init Variable */ -}}
+{{- $hugo_IsProduction := false }}
+{{- if eq .Site.Params.env "production" }}
+	{{- $hugo_IsProduction = true }}
+{{- end }}
 
+
+{{- /* Set URL */ -}}
+{{- $url := .RelPermalink }}
+{{- if $hugo_IsProduction }}
+	{{- $url := .Permalink }}
+{{- end }}
 <article>
-	<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+	<h2><a href="{{ $url }}">{{ .Title }}</a></h2>
 	<div>
 		<time>{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02 15:04:05") }}</time>
 		·
