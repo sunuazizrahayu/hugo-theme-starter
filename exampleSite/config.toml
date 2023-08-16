@@ -9,6 +9,8 @@ paginate = 5
 	#env = "production"
 	robotsAllow = true
 	mainSections = ["post", "posts", "blog"]
+	description = "Hugo Starter Theme Layout"
+	keywords = "Hugo Example"
 
 # menu config
 [menu]

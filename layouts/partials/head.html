@@ -28,10 +28,21 @@
 {{- "" -}}
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>{{ .Title }}</title>
 	{{ hugo.Generator }}
 	<meta name="robots" content="{{ $robots }}">
 	<link rel="canonical" href="{{ .Permalink }}">
 	<link rel="preload stylesheet" type="text/css" href="{{ $stylesheetUrl }}">
+
+{{"<!-- Meta Tags -->" | safeHTML }}
+<meta name="description" content="{{ .Site.Params.Description }}">
+<meta name="keywords" content="{{ .Site.Params.Keywords }}">
+
+{{"<!-- OpenGraph -->" | safeHTML }}
+{{ template "_internal/opengraph.html" . }}
+{{"<!-- Twitter -->" | safeHTML }}
+{{ template "_internal/twitter_cards.html" . }}
+
+{{- "" -}}
 </head>

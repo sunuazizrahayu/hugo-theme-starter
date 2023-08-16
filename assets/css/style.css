@@ -5,6 +5,11 @@ body {
 	padding: 10px;
 }
 
+nav ul li {
+	font-size: 1rem;
+	padding: 6px 0;
+}
+
 .pagination {
 	margin-top: 20px;
 	text-align: center;
